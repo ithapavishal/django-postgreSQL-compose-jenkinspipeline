@@ -20,10 +20,17 @@ pipeline {
 
         stage('Deploy on App VM') {
             steps {
-                sh 'scp -r /var/lib/jenkins/workspace/Django-compose-jenkinspipeline/ vagrant@192.168.56.22:/home/vagrant/django-app/'
+                sh 'scp -r ./* vagrant@192.168.56.22:/home/vagrant/django-app/'
                 sh 'ssh vagrant@192.168.56.22 "docker compose -f /home/vagrant/django-app/docker-compose.yml up -d --build"'
             }
         }
+
+        // stage('Deploy on App VM') {
+        //     steps {
+        //         sh 'scp -r /var/lib/jenkins/workspace/Django-compose-jenkinspipeline/ vagrant@192.168.56.22:/home/vagrant/django-app/'
+        //         sh 'ssh vagrant@192.168.56.22 "docker compose -f /home/vagrant/django-app/docker-compose.yml up -d --build"'
+        //     }
+        // }
 
         // stage('Deploy on App VM') {
         //     steps {
@@ -31,7 +38,7 @@ pipeline {
         //     }
         // }
 
-        
+
     }
 }
 
