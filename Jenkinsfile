@@ -29,7 +29,7 @@ pipeline {
 
         stage('Deploy on App VM') {
             steps {
-                sh 'ssh vagrant@192.168.56.11 "docker pull $dockerImage && docker-compose -f /home/vagrant/django-app/docker-compose.yml up -d --build"'
+                sh 'ssh vagrant@192.168.56.22 "docker pull $dockerImage && docker-compose -f /home/vagrant/django-app/docker-compose.yml up -d --build"'
             }
         }
     }
